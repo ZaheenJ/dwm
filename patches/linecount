@@ -1,4 +1,0 @@
-for file in /home/zaheen/build/dwm/patches/*
-do
-	wc --lines "$file"
-done
