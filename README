@@ -1,48 +1,28 @@
-dwm - dynamic window manager
-============================
-dwm is an extremely fast, small, and dynamic window manager for X.
+#Included Patches
 
+alwayscenter - Makes floating windows default to center
 
-Requirements
-------------
-In order to build dwm you need the Xlib header files.
+bottomstack(no bstackhoriz) - Master and stack but the stack is on the bottom
 
+centeredmaster(no centeredfloatingmaster) - Master in center surrounded on either side by stacks
 
-Installation
-------------
-Edit config.mk to match your local setup (dwm is installed into
-the /usr/local namespace by default).
+cool-autostart - Autostart anything with dwm and kill when dwm is killed
 
-Afterwards enter the following command to build and install dwm (if
-necessary as root):
+fancybar - Show all windows in status bar
 
-    make clean install
+gaplessgrid - All windows are placed in a grid, basically no master
 
+removeborder - Removes border when there is only one window
 
-Running dwm
------------
-Add the following line to your .xinitrc to start dwm using startx:
+pertag - Keeps layout and other settings per tag
 
-    exec dwm
+restartsig - Restart dwm with a HUP signal or by key combo
 
-In order to connect dwm to a specific display, make sure that
-the DISPLAY environment variable is set correctly, e.g.:
+rotate stack - Rotates all windows clockwise or counter clockwise
 
-    DISPLAY=foo.bar:1 exec dwm
+stackmfack - Change size of stack window in stack
 
-(This will start dwm on display :1 of the host foo.bar.)
+sticky - Make window appear on all tags
 
-In order to display status info in the bar, you can do something
-like this in your .xinitrc:
+warp - Move mouse to center of new focused window
 
-    while xsetroot -name "`date` `uptime | sed 's/.*,//'`"
-    do
-    	sleep 1
-    done &
-    exec dwm
-
-
-Configuration
--------------
-The configuration of dwm is done by creating a custom config.h
-and (re)compiling the source code.

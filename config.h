@@ -20,9 +20,6 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"~/.fehbg", NULL,
-	"dunst", NULL,
-	"light-locker", NULL
 	NULL /* terminate */
 };
 
