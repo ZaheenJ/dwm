@@ -29,6 +29,7 @@ static const char *const autostart[] = {
 	"sh", "-c", "~/.fehbg", NULL,
 	"dunst", NULL,
 	"light-locker", NULL,
+	"firefox", NULL,
 	NULL /* terminate */
 };
 
