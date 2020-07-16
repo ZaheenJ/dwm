@@ -1,28 +1,30 @@
-#Included Patches
+# Included Patches
 
-alwayscenter - Makes floating windows default to center
+[alwayscenter](https://dwm.suckless.org/patches/alwayscenter/) - Makes floating windows default to center
 
-bottomstack(no bstackhoriz) - Master and stack but the stack is on the bottom
+[bottomstack(no bstackhoriz)](https://dwm.suckless.org/patches/alwayscenter/) - Master and stack but the stack is on the bottom
 
-centeredmaster(no centeredfloatingmaster) - Master in center surrounded on either side by stacks
+[centeredmaster(no centeredfloatingmaster)](https://dwm.suckless.org/patches/centeredmaster/) - Master in center surrounded on either side by stacks
 
-cool-autostart - Autostart anything with dwm and kill when dwm is killed
+[cool-autostart](https://dwm.suckless.org/patches/cool_autostart/) - Autostart anything with dwm and kill when dwm is killed
 
-fancybar - Show all windows in status bar
+[fancybar](https://dwm.suckless.org/patches/fancybar/) - Show all windows in status bar
 
-gaplessgrid - All windows are placed in a grid, basically no master
+[gaplessgrid](https://dwm.suckless.org/patches/gaplessgrid/) - All windows are placed in a grid, basically no master
 
-removeborder - Removes border when there is only one window
+[noborder](https://dwm.suckless.org/patches/noborder/) - Removes border when there is only one window
 
-pertag - Keeps layout and other settings per tag
+[pertag](https://dwm.suckless.org/patches/pertag/) - Keeps layout and other settings per tag
 
-restartsig - Restart dwm with a HUP signal or by key combo
+[powerline](https://gitlab.com/udiboy1209-suckless/dwm/-/commit/071f5063e8ac4280666828179f92788d893eea40) - Powerline Bar
 
-rotate stack - Rotates all windows clockwise or counter clockwise
+[restartsig](https://dwm.suckless.org/patches/restartsig/) - Restart dwm with a HUP signal or by key combo
 
-stackmfack - Change size of stack window in stack
+[rotate stack](https://dwm.suckless.org/patches/rotatestack/) - Rotates all windows clockwise or counter clockwise
 
-sticky - Make window appear on all tags
+[stackmfack](https://dwm.suckless.org/patches/stackmfact/) - Change size of stack window in stack
 
-warp - Move mouse to center of new focused window
+[sticky](https://dwm.suckless.org/patches/sticky/) - Make window appear on all tags
+
+[warp](https://dwm.suckless.org/patches/warp/) - Move mouse to center of new focused window
 
