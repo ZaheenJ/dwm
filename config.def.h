@@ -9,7 +9,7 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Fira Code:size=10" };
 static const char dmenufont[]       = "Fira Code:size=10";
 static const char col_gray1[]       = "#000000";
-static const char col_gray2[]       = "#444444";
+static const char col_gray2[]       = "#222222";
 static const char col_gray3[]       = "#eeeeee";
 static const char col_gray4[]       = "#000000";
 static const char col_cyan[]        = "#0000ff";
@@ -17,11 +17,11 @@ static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeTitle]  = { col_gray3, col_gray1,  col_gray2 },
+	[SchemeTitle]  = { col_gray3, col_gray2,  col_gray2 },
 	[SchemeTitleSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 static const char *statuscolors[][3] = {
-	{ col_gray3, col_gray1, col_gray2 },
+	{ col_gray3, col_gray2, col_gray2 },
 	{ col_gray4, col_cyan,  col_cyan  }
 };
 
@@ -34,7 +34,7 @@ static const char *const autostart[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "web", "discord", "sysman", "conf", "fun",};
+static const char *tags[] = { "web", "chat", "work", "sysman", "conf", "fun",};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -42,8 +42,9 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       1,       0,           0 },
+	{ "Minecraft",  NULL,       NULL,       6,       0,           0 },
+	{ "Discord",  "Discord",       "Discord",       2,       0,           1 }
 };
 
 /* layout(s) */
