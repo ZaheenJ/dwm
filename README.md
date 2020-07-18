@@ -2,13 +2,11 @@
 
 [alwayscenter](https://dwm.suckless.org/patches/alwayscenter/) - Makes floating windows default to center
 
-[bottomstack](no bstackhoriz)](https://dwm.suckless.org/patches/alwayscenter/) - Master and stack but the stack is on the bottom
+[bottomstack](https://dwm.suckless.org/patches/alwayscenter/) - Master and stack but the stack is on the bottom, didn't include horizontal version
 
-[centeredmaster](no centeredfloatingmaster)](https://dwm.suckless.org/patches/centeredmaster/) - Master in center surrounded on either side by stacks
+[centeredmaster](https://dwm.suckless.org/patches/centeredmaster/) - Master in center surrounded on either side by stacks, didn't include floating version
 
 [cool-autostart](https://dwm.suckless.org/patches/cool_autostart/) - Autostart anything with dwm and kill when dwm is killed
-
-[fancybar](https://dwm.suckless.org/patches/fancybar/) - Show all windows in status bar
 
 [gaplessgrid](https://dwm.suckless.org/patches/gaplessgrid/) - All windows are placed in a grid, basically no master
 
@@ -16,7 +14,7 @@
 
 [pertag](https://dwm.suckless.org/patches/pertag/) - Keeps layout and other settings per tag
 
-[powerline](https://gitlab.com/udiboy1209-suckless/dwm/-/commit/071f5063e8ac4280666828179f92788d893eea40) - Powerline Bar
+[powerline](https://gitlab.com/udiboy1209-suckless/dwm/-/commit/071f5063e8ac4280666828179f92788d893eea40) - Powerline Bar + Shows all windows in bar, status(root window name that appears on the right) temporarily doesn't work
 
 [restartsig](https://dwm.suckless.org/patches/restartsig/) - Restart dwm with a HUP signal or by key combo
 
