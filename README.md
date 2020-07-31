@@ -14,7 +14,7 @@
 
 [pertag](https://dwm.suckless.org/patches/pertag/) - Keeps layout and other settings per tag
 
-[powerline](https://gitlab.com/udiboy1209-suckless/dwm/-/commit/071f5063e8ac4280666828179f92788d893eea40) - Powerline Bar + Shows all windows in bar, status(root window name that appears on the right) temporarily doesn't work
+[powerline](https://gitlab.com/udiboy1209-suckless/dwm/-/commit/071f5063e8ac4280666828179f92788d893eea40) - Powerline Bar + Shows all windows in bar
 
 [restartsig](https://dwm.suckless.org/patches/restartsig/) - Restart dwm with a HUP signal or by key combo
 
