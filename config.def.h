@@ -50,7 +50,7 @@ static const Layout layouts[] = {
 	{ "T",      tile },    /* first entry is default */
 	{ "0",      NULL },    /* no layout function means floating behavior */
 	{ "F",      monocle },
-	{ "W",      bstack },
+	{ "B",      bstack },
 };
 
 /* key definitions */
@@ -63,35 +63,40 @@ static const Layout layouts[] = {
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+#define TERMINAL "st"
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", black, "-nf", darkWhite, "-sb", blue, "-sf", white, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { TERMINAL, NULL };
+static const char *cmuscmd[]  = { TERMINAL, "-e", "cmus"};
+
+/* Inclue keys like volume keys */
+#include <X11/XF86keysym.h>
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd} },
 	{ MODKEY,     		        XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
-	/* { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } }, */
+	{ MODKEY,                       XK_bracketright,      incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_bracketleft,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	// { MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY|ShiftMask,             XK_m, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY, 		        XK_x,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_n,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_b,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_f, 	   togglefloating, {0} },
-	{ MODKEY, 	                XK_f,      togglefullscr,  {0} },
+	// { MODKEY,                       XK_space,  setlayout,      {0} },
+	{ MODKEY|ControlMask|ShiftMask, XK_f, 	   togglefloating, {0} },
+	{ MODKEY|ShiftMask, 	        XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
@@ -110,6 +115,24 @@ static Key keys[] = {
 	TAGKEYS(                        XK_0,                      9)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY, 			XK_q,      quit,           {1} }, 
+	{ MODKEY,      	      	        XK_w,      spawn,          SHCMD("firefox") },
+	{ MODKEY,      	      	        XK_i,      spawn,          SHCMD("firefox --private-window") },
+	{ MODKEY,      	      	        XK_y,      spawn,          SHCMD("firefox --new-window youtube.com") },
+	{ MODKEY,      	      	        XK_c,      spawn,          {.v = cmuscmd}},
+	{ MODKEY,      	      	        XK_d,      spawn,          SHCMD("discord") },
+	{ MODKEY,      	      	        XK_z,      spawn,          SHCMD("zathura") },
+	{ MODKEY,      	      	        XK_m,      spawn,          SHCMD("multimc") },
+	{ MODKEY|ShiftMask,             XK_Print,  spawn,          SHCMD("flameshot gui") },
+	{ MODKEY,      	      	        XK_space,  spawn,          SHCMD("picom -b experimental-backends") },
+	{ MODKEY|ShiftMask,             XK_space,  spawn,          SHCMD("pkill picom") },
+	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("xkill") },
+	{ MODKEY|ShiftMask,             XK_r,      spawn,          SHCMD("systemctl reboot") },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("systemctl poweroff") },
+	{ MODKEY|ShiftMask,             XK_h,      spawn,          SHCMD("systemctl hibernate") },
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("systemctl suspend") },
+	{ 0,      	      	        XF86XK_AudioRaiseVolume,  spawn,          SHCMD("pulsemixer --change-volume +1") },
+	{ 0,      	      	        XF86XK_AudioLowerVolume,  spawn,          SHCMD("pulsemixer --change-volume -1") },
+	{ 0,      	      	        XF86XK_AudioMute,  spawn,                 SHCMD("pulsemixer --toggle-mute") },
 };
 
 /* button definitions */
