@@ -831,10 +831,10 @@ drawbar(Monitor *m)
 
 	for (c = m->cl->clients; c; c = c->next) {
 		if (ISVISIBLE(c, selmon))
-		n++;
+			n++;
 		occ |= c->tags == 255 ? 0 : c->tags;
 		if (c->isurgent)
-		urg |= c->tags;
+			urg |= c->tags;
 	}
 	x = 0;
 	for (i = 0; i < LENGTH(tags); i++) {
@@ -844,10 +844,6 @@ drawbar(Monitor *m)
 		w = TEXTW(tags[i]);
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
 		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
-		/* if (occ & 1 << i)
-			drw_rect(drw, x + boxs, boxs, boxw, boxw,
-				m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
-		urg & 1 << i); */
 		x += w;
 	}
 	w = blw = TEXTW(m->ltsymbol);
@@ -934,14 +930,14 @@ void
 focus(Client *c)
 {
 	if (!c || !ISVISIBLE(c, selmon))
-	for (c = selmon->cl->stack; c && !ISVISIBLE(c, selmon); c = c->snext);
-	if (selmon->sel && selmon->sel != c)
-	unfocus(selmon->sel, 0);
+		for (c = selmon->cl->stack; c && !ISVISIBLE(c, selmon); c = c->snext);
+			if (selmon->sel && selmon->sel != c)
+				unfocus(selmon->sel, 0);
 	if (c) {
 		if (c->mon != selmon)
-		selmon = c->mon;
+			selmon = c->mon;
 		if (c->isurgent)
-		seturgent(c, 0);
+			seturgent(c, 0);
 		detachstack(c);
 		attachstack(c);
 		grabbuttons(c, 1);
@@ -1926,15 +1922,15 @@ tag(const Arg *arg)
 		newtags = arg->ui & TAGMASK;
 		for (m = mons; m; m = m->next)
 		/* if tag is visible on another monitor, move client to the new monitor */
-		if (m != selmon && m->tagset[m->seltags] & newtags) {
-			/* prevent moving client to all tags (MODKEY-Shift-0) when multiple monitors are connected */
-			if(newtags & selmon->tagset[selmon->seltags])
-			return;
-			selmon->sel->tags = newtags;
-			selmon->sel->mon = m;
-			arrange(m);
-			break;
-		}
+			if (m != selmon && m->tagset[m->seltags] & newtags) {
+				/* prevent moving client to all tags (MODKEY-Shift-0) when multiple monitors are connected */
+				if(newtags & selmon->tagset[selmon->seltags])
+					return;
+				selmon->sel->tags = newtags;
+				selmon->sel->mon = m;
+				arrange(m);
+				break;
+			}
 		/* workaround in case just one monitor is connected */
 
 		selmon->sel->tags = arg->ui & TAGMASK;
@@ -1948,7 +1944,7 @@ void
 tagmon(const Arg *arg)
 {
 	if (!selmon->sel || !mons->next)
-	return;
+		return;
 	sendmon(selmon->sel, dirtomon(arg->i));
 }
 
