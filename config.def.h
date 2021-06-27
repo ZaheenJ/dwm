@@ -9,16 +9,35 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Iosevka Custom:size=10", "Symbols Nerd Font:size=10" };
 static const char dmenufont[]       = "Iosevka Custom:size=10";
 static const char black[]       = "#000000";
-static const char darkGrey[]       = "#444444";
+static const char darkGray[]       = "#444444";
 static const char darkWhite[]       = "#bbbbbb";
 static const char white[]       = "#ffffff";
 static const char blue[]        = "#0000FF";
+// Status bar colors
+static const char col1[]            = "#ffffff";
+static const char col2[]            = "#ffffff";
+static const char col3[]            = "#ffffff";
+static const char col4[]            = "#ffffff";
+static const char col5[]            = "#ffffff";
+static const char col6[]            = "#ffffff";
+// Transparency
 static const unsigned int baralpha = 0x7F;
 static const unsigned int borderalpha = OPAQUE;
+
+
+enum { SchemeNorm, SchemeCol1, SchemeCol2, SchemeCol3, SchemeCol4,
+       SchemeCol5, SchemeCol6, SchemeSel }; /* color schemes */
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { darkWhite, black, darkGrey },
+	[SchemeNorm] = { darkWhite, black, darkGray },
 	[SchemeSel]  = { blue, black, blue  },
+	[SchemeCol1]  = { col1,      black, darkGray },
+	[SchemeCol2]  = { col2,      black, darkGray },
+	[SchemeCol3]  = { col3,      black, darkGray },
+	[SchemeCol4]  = { col4,      black, darkGray },
+	[SchemeCol5]  = { col5,      black, darkGray },
+	[SchemeCol6]  = { col6,      black, darkGray },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
@@ -143,7 +162,9 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkStatusText,        0,              Button1,        sigdsblocks,    {.i = 1} },
+	{ ClkStatusText,        0,              Button2,        sigdsblocks,    {.i = 2} },
+	{ ClkStatusText,        0,              Button3,        sigdsblocks,    {.i = 3} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
