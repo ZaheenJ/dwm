@@ -908,12 +908,12 @@ drawbar(Monitor *m)
 			if (i > 0)
 			mw += ew / i;
 
-			for (c = m->cl->clients; c; c = c->next) {
-				if (!ISVISIBLE(c, selmon))
+			for (c = m->cl->clients; c; c = c->next, m->next) {
+				if (!ISVISIBLE(c, m))
 					continue;
 				tw = MIN(m->sel == c ? w : mw, TEXTW(c->name));
 
-				drw_setscheme(drw, scheme[m->sel == c ? SchemeSel : SchemeNorm]);
+				drw_setscheme(drw, scheme[selmon->sel == c ? SchemeSel : SchemeNorm]);
 				if (tw > 0) /* trap special handling of 0 in drw_text */
 					drw_text(drw, x, 0, tw, bh, lrpad / 2, c->name, 0);
 				if (c->isfloating)
