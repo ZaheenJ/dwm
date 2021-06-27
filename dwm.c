@@ -439,9 +439,9 @@ void
 arrange(Monitor *m)
 {
 	if (m)
-	showhide(m->cl->stack);
+		showhide(m->cl->stack);
 	else for (m = mons; m; m = m->next)
-	showhide(m->cl->stack);
+		showhide(m->cl->stack);
 	if (m) {
 		arrangemon(m);
 		restack(m);
@@ -525,13 +525,14 @@ buttonpress(XEvent *e)
 	}
 	if (ev->window == selmon->barwin) {
 		for (c = m->cl->clients; c; c = c->next)
-		occ |= c->tags == 255 ? 0 : c->tags;
+			occ |= c->tags == 255 ? 0 : c->tags;
 		if (ev->x < ble - blw) {
 			i = -1, x = -ev->x;
 			do {
 			/* do not reserve space for vacant tags */
-				if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
+				if (!(occ & 1 << ++i || m->tagset[m->seltags] & 1 << i))
 					continue;
+				x += TEXTW(tags[i]);
 			} while (x <= 0);
 			click = ClkTagBar;
 			arg.ui = 1 << i;
@@ -1671,7 +1672,7 @@ void
 sendmon(Client *c, Monitor *m)
 {
 	if (c->mon == m)
-	return;
+		return;
 	unfocus(c, 1);
 	detachstack(c);
 	c->mon = m;
@@ -1983,10 +1984,10 @@ void
 spawn(const Arg *arg)
 {
 	if (arg->v == dmenucmd)
-	dmenumon[0] = '0' + selmon->num;
+		dmenumon[0] = '0' + selmon->num;
 	if (fork() == 0) {
 		if (dpy)
-		close(ConnectionNumber(dpy));
+			close(ConnectionNumber(dpy));
 		setsid();
 		execvp(((char **)arg->v)[0], (char **)arg->v);
 		fprintf(stderr, "dwm: execvp %s", ((char **)arg->v)[0]);
