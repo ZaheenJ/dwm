@@ -142,7 +142,7 @@ static Key keys[] = {
 	{ MODKEY,      	      	        XK_d,      spawn,          SHCMD("discord") },
 	{ MODKEY,      	      	        XK_z,      spawn,          SHCMD("zathura") },
 	{ MODKEY,      	      	        XK_m,      spawn,          SHCMD("multimc") },
-	{ MODKEY,     		        XK_Print,  spawn,          SHCMD("flameshot && flameshot gui") },
+	{ 0,     		        XK_Print,  spawn,          SHCMD("flameshot && flameshot gui") },
 	{ MODKEY,      	      	        XK_space,  spawn,          SHCMD("picom -b --experimental-backends") },
 	{ MODKEY|ShiftMask,             XK_space,  spawn,          SHCMD("pkill picom") },
 	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("xkill") },
