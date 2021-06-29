@@ -1535,7 +1535,7 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	c->oldh = c->h; c->h = wc.height = h;
 	wc.border_width = c->bw;
 
-	if (((nexttiled(c->mon->cl->clients, selmon) == c && !nexttiled(c->next, selmon))
+	if (((nexttiled(c->mon->cl->clients, c->mon) == c && !nexttiled(c->next, c->mon))
 	    || &monocle == c->mon->lt[c->mon->sellt]->arrange))
 	{
 		c->w = wc.width += c->bw * 2;
