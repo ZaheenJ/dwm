@@ -8,11 +8,13 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Iosevka Custom:size=10", "Symbols Nerd Font:size=10" };
 static const char dmenufont[]       = "Iosevka Custom:size=10";
-static const char black[]       = "#000000";
-static const char darkGray[]       = "#444444";
+static const char black[]           = "#000000";
+static const char darkGray[]        = "#444444";
 static const char darkWhite[]       = "#bbbbbb";
-static const char white[]       = "#ffffff";
-static const char blue[]        = "#0000FF";
+static const char white[]           = "#ffffff";
+static const char blue[]            = "#0000ff";
+static const char red[]             = "#ff0000";
+static const char pink[]            = "#ff00ff";
 // Status bar colors
 static const char col1[]            = "#ffffff";
 static const char col2[]            = "#ffffff";
@@ -25,24 +27,28 @@ static const unsigned int baralpha = 0x7F;
 static const unsigned int borderalpha = OPAQUE;
 
 
-enum { SchemeNorm, SchemeCol1, SchemeCol2, SchemeCol3, SchemeCol4,
-       SchemeCol5, SchemeCol6, SchemeSel }; /* color schemes */
+enum { SchemeNorm, SchemeNormUrg, SchemeCol1, SchemeCol2, SchemeCol3, SchemeCol4,
+       SchemeCol5, SchemeCol6, SchemeSel, SchemeSelUrg }; /* color schemes */
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { darkWhite, black, darkGray },
-	[SchemeSel]  = { blue, black, blue  },
-	[SchemeCol1]  = { col1,      black, darkGray },
-	[SchemeCol2]  = { col2,      black, darkGray },
-	[SchemeCol3]  = { col3,      black, darkGray },
-	[SchemeCol4]  = { col4,      black, darkGray },
-	[SchemeCol5]  = { col5,      black, darkGray },
-	[SchemeCol6]  = { col6,      black, darkGray },
+	[SchemeNorm]    = { darkWhite, black, darkGray },
+	[SchemeNormUrg] = { red,       black, darkGray },
+	[SchemeSel]     = { blue,      black, blue  },
+	[SchemeSelUrg]  = { pink,      black, blue  },
+	[SchemeCol1]    = { col1,      black, darkGray },
+	[SchemeCol2]    = { col2,      black, darkGray },
+	[SchemeCol3]    = { col3,      black, darkGray },
+	[SchemeCol4]    = { col4,      black, darkGray },
+	[SchemeCol5]    = { col5,      black, darkGray },
+	[SchemeCol6]    = { col6,      black, darkGray },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
 	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	[SchemeNormUrg] = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeSelUrg]  = { OPAQUE, baralpha, borderalpha },
 };
 
 /* tagging */

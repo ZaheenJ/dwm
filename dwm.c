@@ -856,7 +856,7 @@ drawbar(Monitor *m)
 		tmp = *stc;
 		if (stp != stc) {
 			*stc = '\0';
-			x = drw_text(drw, x, 0, TTEXTW(stp), bh, 0, stp, 0);
+			x = drw_text(drw, x, 0, TTEXTW(stp), bh, 0, stp);
 		}
 		if (tmp == '\0')
 			break;
@@ -880,13 +880,13 @@ drawbar(Monitor *m)
 		if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
 			continue;
 		w = TEXTW(tags[i]);
-		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
-		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
+		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? (urg & 1 << i ? SchemeSelUrg : SchemeSel) : (urg & 1 << i ? SchemeNormUrg : SchemeNorm)]);
+		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i]);
 		x += w;
 	}
 	w = TEXTW(m->ltsymbol);
 	drw_setscheme(drw, scheme[SchemeNorm]);
-	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol);
 
 	blw =w, ble = x;
 	w = m->ww - wstext - x;
@@ -916,7 +916,7 @@ drawbar(Monitor *m)
 
 				drw_setscheme(drw, scheme[selmon->sel == c ? SchemeSel : SchemeNorm]);
 				if (tw > 0) /* trap special handling of 0 in drw_text */
-					drw_text(drw, x, 0, tw, bh, lrpad / 2, c->name, 0);
+					drw_text(drw, x, 0, tw, bh, lrpad / 2, c->name);
 				if (c->isfloating)
 					drw_rect(drw, x + boxs, boxs, boxw, boxw, c->isfixed, 0);
 				x += tw;
@@ -1300,12 +1300,12 @@ monocle(Monitor *m)
 	Client *c;
 
 	for (c = m->cl->clients; c; c = c->next)
-	if (ISVISIBLE(c, m))
-	n++;
+		if (ISVISIBLE(c, m))
+			n++;
 	if (n > 0) /* override layout symbol */
-	snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
+		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
 	for (c = nexttiled(m->cl->clients, m); c; c = nexttiled(c->next, m))
-	resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
+		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
 }
 
 void
