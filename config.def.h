@@ -32,16 +32,16 @@ enum { SchemeNorm, SchemeNormUrg, SchemeCol1, SchemeCol2, SchemeCol3, SchemeCol4
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm]    = { darkWhite, black, darkGray },
-	[SchemeNormUrg] = { red,       black, darkGray },
-	[SchemeSel]     = { blue,      black, blue  },
-	[SchemeSelUrg]  = { pink,      black, blue  },
 	[SchemeCol1]    = { col1,      black, darkGray },
 	[SchemeCol2]    = { col2,      black, darkGray },
 	[SchemeCol3]    = { col3,      black, darkGray },
 	[SchemeCol4]    = { col4,      black, darkGray },
 	[SchemeCol5]    = { col5,      black, darkGray },
 	[SchemeCol6]    = { col6,      black, darkGray },
+	[SchemeNorm]    = { darkWhite, black, darkGray },
+	[SchemeNormUrg] = { red,       black, darkGray },
+	[SchemeSel]     = { blue,      black, blue  },
+	[SchemeSelUrg]  = { pink,      black, blue  },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
