@@ -51,6 +51,12 @@ static const unsigned int alphas[][3]      = {
 	[SchemeSelUrg]  = { OPAQUE, baralpha, borderalpha },
 };
 
+static const char *const autostart[] = {
+	"dsblocks", NULL,
+	NULL /* terminate */
+};
+
+
 /* tagging */
 static const char *tags[] = { "", "", "", "拾", "", "", "漣", "", "ﱘ", "" };
 
