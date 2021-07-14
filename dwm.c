@@ -936,9 +936,9 @@ drawbar(Monitor *m)
 					i++;
 			}
 			if (i > 0)
-			mw += ew / i;
+				mw += ew / i;
 
-			for (c = m->cl->clients; c; c = c->next, m->next) {
+			for (c = m->cl->clients; c; c = c->next) {
 				if (!ISVISIBLE(c, m))
 					continue;
 				tw = MIN(m->sel == c ? w : mw, TEXTW(c->name));
@@ -964,7 +964,7 @@ drawbars(void)
 	Monitor *m;
 
 	for (m = mons; m; m = m->next)
-	drawbar(m);
+		drawbar(m);
 }
 
 void
@@ -1001,8 +1001,8 @@ focus(Client *c)
 {
 	if (!c || !ISVISIBLE(c, selmon))
 		for (c = selmon->cl->stack; c && !ISVISIBLE(c, selmon); c = c->snext);
-			if (selmon->sel && selmon->sel != c)
-				unfocus(selmon->sel, 0);
+	if (selmon->sel && selmon->sel != c)
+		unfocus(selmon->sel, 0);
 	if (c) {
 		if (c->mon != selmon)
 			selmon = c->mon;
@@ -2334,7 +2334,7 @@ updateclientlist()
 void updatecurrentdesktop(void){
 	long rawdata[] = { selmon->tagset[selmon->seltags] };
 	int i=0;
-	while(*rawdata >> i+1){
+	while(*rawdata >> (i+1)){
 		i++;
 	}
 	long data[] = { i };
