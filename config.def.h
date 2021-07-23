@@ -15,13 +15,9 @@ static const char white[]           = "#ffffff";
 static const char blue[]            = "#0000ff";
 static const char red[]             = "#ff0000";
 static const char pink[]            = "#ff00ff";
-// Status bar colors
-static const char col1[]            = "#ffffff";
-static const char col2[]            = "#ffffff";
-static const char col3[]            = "#ffffff";
-static const char col4[]            = "#ffffff";
-static const char col5[]            = "#ffffff";
-static const char col6[]            = "#ffffff";
+static const char orange[]          = "#ff7F00";
+static const char yellow[]          = "#ffff00";
+static const char green[]           = "#00ff00";
 // Transparency
 static const unsigned int baralpha = 0x7F;
 static const unsigned int borderalpha = OPAQUE;
@@ -31,13 +27,13 @@ enum { SchemeNorm, SchemeNormUrg, SchemeCol1, SchemeCol2, SchemeCol3, SchemeCol4
        SchemeCol5, SchemeCol6, SchemeSel, SchemeSelUrg }; /* color schemes */
 
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeCol1]    = { col1,      black, darkGray },
-	[SchemeCol2]    = { col2,      black, darkGray },
-	[SchemeCol3]    = { col3,      black, darkGray },
-	[SchemeCol4]    = { col4,      black, darkGray },
-	[SchemeCol5]    = { col5,      black, darkGray },
-	[SchemeCol6]    = { col6,      black, darkGray },
+	/*                  fg         bg     border   */
+	[SchemeCol1]    = { red,       black, darkGray },
+	[SchemeCol2]    = { orange,    black, darkGray },
+	[SchemeCol3]    = { yellow,    black, darkGray },
+	[SchemeCol4]    = { green,     black, darkGray },
+	[SchemeCol5]    = { blue,      black, darkGray },
+	[SchemeCol6]    = { pink,      black, darkGray },
 	[SchemeNorm]    = { darkWhite, black, darkGray },
 	[SchemeNormUrg] = { red,       black, darkGray },
 	[SchemeSel]     = { blue,      black, blue  },
@@ -49,6 +45,12 @@ static const unsigned int alphas[][3]      = {
 	[SchemeNormUrg] = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 	[SchemeSelUrg]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol1] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol2] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol3] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol4] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol5] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol6] = { OPAQUE, baralpha, borderalpha },
 };
 
 static const char *const autostart[] = {
@@ -153,7 +155,7 @@ static Key keys[] = {
 	{ MODKEY,      	      	        XK_d,      spawn,          SHCMD("discord") },
 	{ MODKEY,      	      	        XK_z,      spawn,          SHCMD("zathura") },
 	{ MODKEY,      	      	        XK_m,      spawn,          SHCMD("multimc") },
-	{ 0,     		        XK_Print,  spawn,          SHCMD("flameshot && flameshot gui") },
+	{ 0,     		        XK_Print,  spawn,          SHCMD("flameshot gui") },
 	{ MODKEY,      	      	        XK_space,  spawn,          SHCMD("picom -b --experimental-backends") },
 	{ MODKEY|ShiftMask,             XK_space,  spawn,          SHCMD("pkill picom") },
 	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("xkill") },
