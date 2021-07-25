@@ -163,9 +163,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("systemctl poweroff") },
 	{ MODKEY|ShiftMask,             XK_h,      spawn,          SHCMD("systemctl hibernate") },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("systemctl suspend") },
-	{ 0,      	      	        XF86XK_AudioRaiseVolume,  spawn,          SHCMD("pulsemixer --change-volume +1") },
-	{ 0,      	      	        XF86XK_AudioLowerVolume,  spawn,          SHCMD("pulsemixer --change-volume -1") },
-	{ 0,      	      	        XF86XK_AudioMute,  spawn,                 SHCMD("pulsemixer --toggle-mute") },
+	{ 0,      	      	        XF86XK_AudioRaiseVolume,  spawn,          SHCMD("pulsemixer --change-volume +1; sigdsblocks 2") },
+	{ 0,      	      	        XF86XK_AudioLowerVolume,  spawn,          SHCMD("pulsemixer --change-volume -1; sigdsblocks 2") },
+	{ 0,      	      	        XF86XK_AudioMute,  spawn,                 SHCMD("pulsemixer --toggle-mute; sigdsblocks 2") },
 };
 
 /* button definitions */
