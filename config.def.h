@@ -22,18 +22,8 @@ static const char green[]           = "#00ff00";
 static const unsigned int baralpha = 0x7F;
 static const unsigned int borderalpha = OPAQUE;
 
-
-enum { SchemeNorm, SchemeNormUrg, SchemeCol1, SchemeCol2, SchemeCol3, SchemeCol4,
-       SchemeCol5, SchemeCol6, SchemeSel, SchemeSelUrg }; /* color schemes */
-
 static const char *colors[][3]      = {
 	/*                  fg         bg     border   */
-	[SchemeCol1]    = { red,       black, darkGray },
-	[SchemeCol2]    = { orange,    black, darkGray },
-	[SchemeCol3]    = { yellow,    black, darkGray },
-	[SchemeCol4]    = { green,     black, darkGray },
-	[SchemeCol5]    = { blue,      black, darkGray },
-	[SchemeCol6]    = { pink,      black, darkGray },
 	[SchemeNorm]    = { darkWhite, black, darkGray },
 	[SchemeNormUrg] = { red,       black, darkGray },
 	[SchemeSel]     = { blue,      black, blue  },
@@ -45,16 +35,10 @@ static const unsigned int alphas[][3]      = {
 	[SchemeNormUrg] = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 	[SchemeSelUrg]  = { OPAQUE, baralpha, borderalpha },
-	[SchemeCol1] = { OPAQUE, baralpha, borderalpha },
-	[SchemeCol2] = { OPAQUE, baralpha, borderalpha },
-	[SchemeCol3] = { OPAQUE, baralpha, borderalpha },
-	[SchemeCol4] = { OPAQUE, baralpha, borderalpha },
-	[SchemeCol5] = { OPAQUE, baralpha, borderalpha },
-	[SchemeCol6] = { OPAQUE, baralpha, borderalpha },
 };
 
 static const char *const autostart[] = {
-	"dsblocks", NULL,
+	// "dsblocks", NULL,
 	NULL /* terminate */
 };
 
@@ -175,9 +159,7 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button1,        sigdsblocks,    {.i = 1} },
-	{ ClkStatusText,        0,              Button2,        sigdsblocks,    {.i = 2} },
-	{ ClkStatusText,        0,              Button3,        sigdsblocks,    {.i = 3} },
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
