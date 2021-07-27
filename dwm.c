@@ -859,18 +859,19 @@ drawbar(Monitor *m)
 	drw_setscheme(drw, scheme[SchemeNorm]);
 	tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
 	while (1) {
-		if ((unsigned int)*ts > LENGTH(colors)) { ts++; continue ; }
+		if ((unsigned int) *ts > LENGTH(colors)) { ts++; continue ; }
 		ctmp = *ts;
 		*ts = '\0';
-		drw_text(drw, m->ww - sw + tx, 0, sw - tx, bh, 0, tp);
+		drw_text(drw, m->ww - tw + tx, 0, tw - tx, bh, 0, tp);
 		tx += TEXTW(tp) -lrpad;
 		if (ctmp == '\0') { break; }
 		drw_setscheme(drw, scheme[(unsigned int)(ctmp-1)]);
 		*ts = ctmp;
 		tp = ++ts;
 	}
+
 	for (c = m->cl->clients; c; c = c->next) {
-		if (ISVISIBLE(c, selmon))
+		if (ISVISIBLE(c, m))
 			n++;
 		occ |= c->tags == 255 ? 0 : c->tags;
 		if (c->isurgent)
