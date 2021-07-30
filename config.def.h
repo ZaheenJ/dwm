@@ -24,6 +24,12 @@ static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]      = {
 	/*                  fg         bg     border   */
+	[SchemeCol1]    = { red, black, darkGray },
+	[SchemeCol2]    = { orange, black, darkGray },
+	[SchemeCol3]    = { yellow, black, darkGray },
+	[SchemeCol4]    = { green, black, darkGray },
+	[SchemeCol5]    = { blue, black, darkGray },
+	[SchemeCol6]    = { pink, black, darkGray },
 	[SchemeNorm]    = { darkWhite, black, darkGray },
 	[SchemeNormUrg] = { red,       black, darkGray },
 	[SchemeSel]     = { blue,      black, blue  },
@@ -31,6 +37,12 @@ static const char *colors[][3]      = {
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
+	[SchemeCol1] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol2] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol3] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol4] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol5] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol6] = { OPAQUE, baralpha, borderalpha },
 	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
 	[SchemeNormUrg] = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
@@ -38,7 +50,7 @@ static const unsigned int alphas[][3]      = {
 };
 
 static const char *const autostart[] = {
-	// "dsblocks", NULL,
+	"aslstatus", NULL,
 	NULL /* terminate */
 };
 
@@ -147,9 +159,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("systemctl poweroff") },
 	{ MODKEY|ShiftMask,             XK_h,      spawn,          SHCMD("systemctl hibernate") },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("systemctl suspend") },
-	{ 0,      	      	        XF86XK_AudioRaiseVolume,  spawn,          SHCMD("pulsemixer --change-volume +1; sigdsblocks 2") },
-	{ 0,      	      	        XF86XK_AudioLowerVolume,  spawn,          SHCMD("pulsemixer --change-volume -1; sigdsblocks 2") },
-	{ 0,      	      	        XF86XK_AudioMute,  spawn,                 SHCMD("pulsemixer --toggle-mute; sigdsblocks 2") },
+	{ 0,      	      	        XF86XK_AudioRaiseVolume,  spawn,          SHCMD("pulsemixer --change-volume +1") },
+	{ 0,      	      	        XF86XK_AudioLowerVolume,  spawn,          SHCMD("pulsemixer --change-volume -1") },
+	{ 0,      	      	        XF86XK_AudioMute,  spawn,                 SHCMD("pulsemixer --toggle-mute") },
 };
 
 /* button definitions */

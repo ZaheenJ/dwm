@@ -68,7 +68,7 @@
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
-enum { SchemeNorm, SchemeNormUrg, SchemeSel, SchemeSelUrg }; /* color schemes */
+enum { SchemeCol1, SchemeCol2, SchemeCol3, SchemeCol4, SchemeCol5, SchemeCol6, SchemeNorm, SchemeNormUrg, SchemeSel, SchemeSelUrg }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
 	NetWMFullscreen, NetActiveWindow, NetWMWindowType,
 	NetWMWindowTypeDialog, NetClientList, NetDesktopNames, NetDesktopViewport, NetNumberOfDesktops, NetCurrentDesktop, NetLast }; /* EWMH atoms */
@@ -855,17 +855,30 @@ drawbar(Monitor *m)
 	char *ts = stext, *tp = stext, ctmp;
 	Client *c;
 
+	/* correction for colours */
+ 	int correct = 0; 
+	char *xcape = malloc (sizeof (char) * 128);
+	memset(xcape,0,sizeof (char) * 128);
+	for ( ; *ts != '\0' ; ts++) {    
+		if (*ts <= LENGTH(colors)) {
+			sprintf(xcape,"%c",*ts);
+			correct += TEXTW(xcape) - lrpad;
+		}
+	}
+	free(xcape);
+	ts = stext;
+
 	/* draw status first so it can be overdrawn by tags later */
 	drw_setscheme(drw, scheme[SchemeNorm]);
-	tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
+	tw = TEXTW(stext) - lrpad + 2 - correct; /* 2px right padding */
 	while (1) {
-		if ((unsigned int) *ts > LENGTH(colors)) { ts++; continue ; }
+		if ((unsigned int) *ts > LENGTH(colors)) { ts++; continue; }
 		ctmp = *ts;
 		*ts = '\0';
 		drw_text(drw, m->ww - tw + tx, 0, tw - tx, bh, 0, tp);
-		tx += TEXTW(tp) -lrpad;
+		tx += TEXTW(tp) - lrpad;
 		if (ctmp == '\0') { break; }
-		drw_setscheme(drw, scheme[(unsigned int)(ctmp-1)]);
+		drw_setscheme(drw, scheme[(unsigned int) (ctmp-1)]);
 		*ts = ctmp;
 		tp = ++ts;
 	}
@@ -898,7 +911,7 @@ drawbar(Monitor *m)
 
 			i = 0;
 			for (c = m->cl->clients; c; c = c->next) {
-				if (!ISVISIBLE(c, selmon) || c == m->sel)
+				if (!ISVISIBLE(c, m) || c == m->sel)
 					continue;
 				tw = TEXTW(c->name);
 				if(tw < mw)
