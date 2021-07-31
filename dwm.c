@@ -541,13 +541,13 @@ buttonpress(XEvent *e)
 		focus(NULL);
 	}
 	if (ev->window == selmon->barwin) {
+		i = x = 0;
 		for (c = m->cl->clients; c; c = c->next)
 			occ |= c->tags == 255 ? 0 : c->tags;
-		i = x = 0;
 		do {
 			/* do not reserve space for vacant tags */
-				if (!(occ & 1 << ++i || m->tagset[m->seltags] & 1 << i))
-					continue;
+			if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
+				continue;
 			x += TEXTW(tags[i]);
 		} while (ev->x >= x && ++i < LENGTH(tags));
 		if (i < LENGTH(tags)) {
