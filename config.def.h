@@ -9,13 +9,14 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Iosevka Custom:size=10", "Symbols Nerd Font:size=10" };
 static const char dmenufont[]       = "Iosevka Custom:size=10";
 static const char black[]           = "#000000";
-static const char darkGray[]        = "#444444";
-static const char darkWhite[]       = "#bbbbbb";
+static const char dark_gray[]       = "#444444";
+static const char dark_white[]      = "#bbbbbb";
 static const char white[]           = "#ffffff";
 static const char blue[]            = "#0000ff";
+static const char purple[]          = "#800080";
 static const char red[]             = "#ff0000";
 static const char pink[]            = "#ff00ff";
-static const char orange[]          = "#ff7F00";
+static const char orange[]          = "#ff7f00";
 static const char yellow[]          = "#ffff00";
 static const char green[]           = "#00ff00";
 // Transparency
@@ -24,16 +25,18 @@ static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]      = {
 	/*                  fg         bg     border   */
-	[SchemeCol1]    = { red, black, darkGray },
-	[SchemeCol2]    = { orange, black, darkGray },
-	[SchemeCol3]    = { yellow, black, darkGray },
-	[SchemeCol4]    = { green, black, darkGray },
-	[SchemeCol5]    = { blue, black, darkGray },
-	[SchemeCol6]    = { pink, black, darkGray },
-	[SchemeNorm]    = { darkWhite, black, darkGray },
-	[SchemeNormUrg] = { red,       black, darkGray },
+	[SchemeCol1]    = { red, black, dark_gray },
+	[SchemeCol2]    = { orange, black, dark_gray },
+	[SchemeCol3]    = { yellow, black, dark_gray },
+	[SchemeCol4]    = { green, black, dark_gray },
+	[SchemeCol5]    = { blue, black, dark_gray },
+	[SchemeCol6]    = { purple, black, dark_gray },
+	[SchemeCol7]    = { pink, black, dark_gray },
+	[SchemeNorm]    = { dark_white, black, dark_gray },
+	[SchemeNormUrg] = { red,       black, dark_gray },
 	[SchemeSel]     = { blue,      black, blue  },
 	[SchemeSelUrg]  = { pink,      black, blue  },
+	[SchemeSelOtherMon]     = { green,      black, blue  },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
@@ -43,10 +46,12 @@ static const unsigned int alphas[][3]      = {
 	[SchemeCol4] = { OPAQUE, baralpha, borderalpha },
 	[SchemeCol5] = { OPAQUE, baralpha, borderalpha },
 	[SchemeCol6] = { OPAQUE, baralpha, borderalpha },
+	[SchemeCol7] = { OPAQUE, baralpha, borderalpha },
 	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
 	[SchemeNormUrg] = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 	[SchemeSelUrg]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeSelOtherMon]  = { OPAQUE, baralpha, borderalpha },
 };
 
 static const char *const autostart[] = {
@@ -96,7 +101,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", black, "-nf", darkWhite, "-sb", blue, "-sf", white, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", black, "-nf", dark_white, "-sb", blue, "-sf", white, NULL };
 static const char *termcmd[]  = { TERMINAL, NULL };
 static const char *cmuscmd[]  = { TERMINAL, "-e", "cmus"};
 
